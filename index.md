@@ -21,7 +21,29 @@
     - #### Phase I:
         Finding most reliable control limits based on the in-control process data points. In other words, finding in-control process data points   
         - There different methods based on the data type. We apply Moving Range method because the sample consists of an individual unit (working with real time data)
-        
+```markdown
+args <- commandArgs()
+rFunctionsDirPath = args[6]
+rDataDirPath = args[7]
+dataFileCsvPath = args[8]
+
+source(paste(rFunctionsDirPath, 'utilities.R', sep=""), echo = F)
+source(paste(rFunctionsDirPath, 'modeling.R', sep=""), echo = F)
+source(paste(rFunctionsDirPath, 'libraries.R', sep=""), echo = F)
+
+rawData <- read.csv(file = dataFileCsvPath, header = T, stringsAsFactors = F)
+
+phaseIOutput<-suppressWarnings(FilteringOutliers(dataset = rawData,
+                                                 colNumber = 3,
+                                                 initialTrainset = 500,
+                                                 L = 2.75, lambda = 0.05,
+                                                 maxp = 3, maxq = 3, maxd = 1))
+
+save(phaseIOutput, file = paste(rDataDirPath, 'phaseIoutput_', rawData[1,4],'.RData', sep = ''))
+
+
+```
+
     - #### Phase II:
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
