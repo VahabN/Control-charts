@@ -6,16 +6,20 @@
     -  Upper control limit: Horizontal line that shows the upper boundary of the in-control process.
     -  Lower control limit: Horizontal line that shows the upper boundary of the in-control process.
 -  examples of monitoring charts, e.g. x-bar chart, range chart, EWMA, etc.
-### When we need control charts?
+#### When we need control charts?
 - When controlling ongoing process by finding anomalies and correcting the problems.
 - When determining whether a process is stable or not.
 - When predicting the outcomes of a process.
-### Why we need control charts?
+#### Why we need control charts?
 - To estimate process average and variation. 
 - To judge the impact of process improvement methods.
 - To prevent out of control process by finding the correlation of different variables and the effect of the on each other. 
 
 
+## Implementing control charts:
+### - Two Phases:
+    #### - Phase I:
+    #### - Phase II:
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
 ```markdown
