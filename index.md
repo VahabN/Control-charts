@@ -20,7 +20,8 @@
 - ### Two Phases:
     - #### Phase I:
         Finding most reliable control limits based on the in-control process data points. In other words, finding in-control process data points   
-        - There different methods based on the data type. We apply Moving Range method because the sample consists of an individual unit.
+        - There different methods based on the data type. We apply Moving Range method because the sample consists of an individual unit (working with real time data)
+        
     - #### Phase II:
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
