@@ -50,7 +50,7 @@ FilteringOutliers <- function(dataset, colNumber, initialTrainset, L, lambda, ma
     phaseIparameters[[parameters$pre_grade]] <- parameters
     phaseIewmaParameters[[parameters$pre_grade]] <- ewmaParameters
   }
-  return(list(phaseIparameters = phaseIparameters))
+  `return(list(phaseIparameters = phaseIparameters))`
 }
 ```
 
