@@ -22,7 +22,7 @@
         Finding most reliable control limits based on the in-control process data points. In other words, finding in-control process data points   
         - There different methods based on the data type. We apply Moving Range method because the sample consists of an individual unit (working with real time data)
 ```markdown
-`FilteringOutliers <- function(dataset, colNumber, initialTrainset, L, lambda, maxp, maxq, maxd) {
+FilteringOutliers <- function(dataset, colNumber, initialTrainset, L, lambda, maxp, maxq, maxd) {
   temp <- initialTrainset _# number of data points to train the model_
   datasets <- UniqueVariableLists(dataset, colNumber) _# if we have different variables in data set we seperet data based on those variables_
   phaseIparameters <- list()
@@ -51,7 +51,7 @@
     phaseIewmaParameters[[parameters$pre_grade]] <- ewmaParameters
   }
   return(list(phaseIparameters = phaseIparameters))
-}`
+}
 ```
 
    - #### Phase II:
@@ -59,7 +59,7 @@ Markdown is a lightweight and easy-to-use syntax for styling your writing. It in
 
 
 Syntax highlighted code block
-
+```markdown
 # Header 1
 ## Header 2
 ### Header 3
