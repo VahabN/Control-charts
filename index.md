@@ -22,7 +22,7 @@
         Finding most reliable control limits based on the in-control process data points. In other words, finding in-control process data points   
         - There different methods based on the data type. We apply Moving Range method because the sample consists of an individual unit (working with real time data)
 ```markdown
-FilteringOutliers <- function(dataset, colNumber, initialTrainset, L, lambda, maxp, maxq, maxd) {
+`FilteringOutliers <- function(dataset, colNumber, initialTrainset, L, lambda, maxp, maxq, maxd) {
   temp <- initialTrainset _# number of data points to train the model_
   datasets <- UniqueVariableLists(dataset, colNumber) _# if we have different variables in data set we seperet data based on those variables_
   phaseIparameters <- list()
@@ -50,8 +50,8 @@ FilteringOutliers <- function(dataset, colNumber, initialTrainset, L, lambda, ma
     phaseIparameters[[parameters$pre_grade]] <- parameters
     phaseIewmaParameters[[parameters$pre_grade]] <- ewmaParameters
   }
-  `return(list(phaseIparameters = phaseIparameters))`
-}
+  return(list(phaseIparameters = phaseIparameters))
+}`
 ```
 
    - #### Phase II:
