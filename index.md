@@ -1,7 +1,6 @@
-## Control Charts:
-You can use the [editor on GitHub](https://github.com/VahabN/Control-charts/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+# Control Charts:
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## What is a monitoring chart? 
 
 ### Markdown
 
