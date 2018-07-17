@@ -19,7 +19,7 @@
 ## Implementing control charts:
 - ### Two Phases:
     - #### Phase I:
-    Finding most reliable control limits based on the in-control process data points. In another word, finding in-control process data points   
+        Finding most reliable control limits based on the in-control process data points. In other words, finding in-control process data points   
         - There different methods based on the data type. We apply Moving Range method because the sample consists of an individual unit.
     - #### Phase II:
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
