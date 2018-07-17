@@ -1,7 +1,11 @@
-# Control Charts:
+## Control Charts:
 
-## What is a monitoring chart? 
-
+#### What is a monitoring chart? 
+  ##### These kinds of charts are used in process monitoring to find and detect changes over time. Control charts usually have 3 main components:
+   ###### Centerline: Could be mean of the data points that we are monitoring or could be a target value based on the problem specification. 
+   ###### Upper control limit: Horizontal line that shows the upper boundary of the in-control process.
+   ###### Lower control limit: Horizontal line that shows the upper boundary of the in-control process.
+  ##### examples of monitoring charts, e.g. x-bar chart, range chart, EWMA, etc.
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
