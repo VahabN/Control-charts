@@ -23,8 +23,8 @@
         - There different methods based on the data type. We apply Moving Range method because the sample consists of an individual unit (working with real time data)
 ```markdown
 FilteringOutliers <- function(dataset, colNumber, initialTrainset, L, lambda, maxp, maxq, maxd) {
-  temp <- initialTrainset
-  datasets <- UniqueVariableLists(dataset, colNumber)
+  temp <- initialTrainset #number of data points to train the model
+  datasets <- UniqueVariableLists(dataset, colNumber) # if we have different variables in data set we seperet data based on those variables
   phaseIparameters <- list()
   phaseIewmaParameters <- list()
   for(i in datasets){
