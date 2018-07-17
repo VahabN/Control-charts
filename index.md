@@ -22,17 +22,6 @@
         Finding most reliable control limits based on the in-control process data points. In other words, finding in-control process data points   
         - There different methods based on the data type. We apply Moving Range method because the sample consists of an individual unit (working with real time data)
 ```markdown
-args <- commandArgs()
-rFunctionsDirPath = args[6]
-rDataDirPath = args[7]
-dataFileCsvPath = args[8]
-
-source(paste(rFunctionsDirPath, 'utilities.R', sep=""), echo = F)
-source(paste(rFunctionsDirPath, 'modeling.R', sep=""), echo = F)
-source(paste(rFunctionsDirPath, 'libraries.R', sep=""), echo = F)
-
-rawData <- read.csv(file = dataFileCsvPath, header = T, stringsAsFactors = F)
-
 FilteringOutliers <- function(dataset, colNumber, initialTrainset, L, lambda, maxp, maxq, maxd) {
   temp <- initialTrainset
   datasets <- UniqueVariableLists(dataset, colNumber)
@@ -40,8 +29,6 @@ FilteringOutliers <- function(dataset, colNumber, initialTrainset, L, lambda, ma
   phaseIewmaParameters <- list()
   for(i in datasets){
     initialData <- InitialTrainingData(inputdata = i, initialTrainset)
-    # L <- lAndLambda[[which(names(lAndLambda)== i[1,3])]]$L
-    # lambda <- lAndLambda[[which(names(lAndLambda)== i[1,3])]]$Lambda
     parameters <- TrainModel(initialData, L, lambda, maxp, maxq, maxd)
     ewmaParameters <- InitEwmaParameters()
     ewmaParameters <- InitialEWMAPhaseI(ewmaParameters, parameters)
@@ -61,18 +48,10 @@ FilteringOutliers <- function(dataset, colNumber, initialTrainset, L, lambda, ma
       ewmaParameters <- InitialEWMAPhaseI(ewmaParameters, parameters)
     }
     phaseIparameters[[parameters$pre_grade]] <- parameters
-    phaseIparameters[[parameters$pre_grade]][['tagID']] <- dataset[1,4]
     phaseIewmaParameters[[parameters$pre_grade]] <- ewmaParameters
   }
-  # return(list(phaseIparameters = phaseIparameters, phaseIewmaParameters = phaseIewmaParameters))
   return(list(phaseIparameters = phaseIparameters))
-  
 }
-
-
-save(phaseIOutput, file = paste(rDataDirPath, 'phaseIoutput_', rawData[1,4],'.RData', sep = ''))
-
-
 ```
 
    - #### Phase II:
