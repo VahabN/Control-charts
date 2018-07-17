@@ -17,8 +17,8 @@
 
 
 ## Implementing control charts:
-### - Two Phases:
-    #### - Phase I:
+- ### Two Phases:
+#### - Phase I:
     #### - Phase II:
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
