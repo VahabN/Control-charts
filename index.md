@@ -33,21 +33,52 @@ source(paste(rFunctionsDirPath, 'libraries.R', sep=""), echo = F)
 
 rawData <- read.csv(file = dataFileCsvPath, header = T, stringsAsFactors = F)
 
-phaseIOutput<-suppressWarnings(FilteringOutliers(dataset = rawData,
-                                                 colNumber = 3,
-                                                 initialTrainset = 500,
-                                                 L = 2.75, lambda = 0.05,
-                                                 maxp = 3, maxq = 3, maxd = 1))
+FilteringOutliers <- function(dataset, colNumber, initialTrainset, L, lambda, maxp, maxq, maxd) {
+  temp <- initialTrainset
+  datasets <- UniqueVariableLists(dataset, colNumber)
+  phaseIparameters <- list()
+  phaseIewmaParameters <- list()
+  for(i in datasets){
+    initialData <- InitialTrainingData(inputdata = i, initialTrainset)
+    # L <- lAndLambda[[which(names(lAndLambda)== i[1,3])]]$L
+    # lambda <- lAndLambda[[which(names(lAndLambda)== i[1,3])]]$Lambda
+    parameters <- TrainModel(initialData, L, lambda, maxp, maxq, maxd)
+    ewmaParameters <- InitEwmaParameters()
+    ewmaParameters <- InitialEWMAPhaseI(ewmaParameters, parameters)
+    while(TRUE %in% (ewmaParameters$ewma_all > ewmaParameters$controlLimits$ucl_n1 | 
+                     ewmaParameters$ewma_all < ewmaParameters$controlLimits$lcl_n1)) {  
+      removedDatapoints <- length(parameters$arimaModel$x[(ewmaParameters$ewma_all > ewmaParameters$controlLimits$ucl_n1 |
+                                                             ewmaParameters$ewma_all < ewmaParameters$controlLimits$lcl_n1)])
+      parameters$arimaModel$x <- parameters$arimaModel$x[! parameters$arimaModel$x %in% 
+                                                           parameters$arimaModel$x[(ewmaParameters$ewma_all > 
+                                                                                      ewmaParameters$controlLimits$ucl_n1 | 
+                                                                                      ewmaParameters$ewma_all < 
+                                                                                      ewmaParameters$controlLimits$lcl_n1)]]
+      parameters$arimaModel$x <- append(parameters$arimaModel$x, i[(temp + 1):(temp + removedDatapoints),2])
+      temp <- temp + removedDatapoints
+      parameters <- TrainModelPhaseI(parameters$arimaModel$x, parameters$pre_grade, L, lambda, maxp, maxq, maxd)
+      ewmaParameters <- InitEwmaParameters()
+      ewmaParameters <- InitialEWMAPhaseI(ewmaParameters, parameters)
+    }
+    phaseIparameters[[parameters$pre_grade]] <- parameters
+    phaseIparameters[[parameters$pre_grade]][['tagID']] <- dataset[1,4]
+    phaseIewmaParameters[[parameters$pre_grade]] <- ewmaParameters
+  }
+  # return(list(phaseIparameters = phaseIparameters, phaseIewmaParameters = phaseIewmaParameters))
+  return(list(phaseIparameters = phaseIparameters))
+  
+}
+
 
 save(phaseIOutput, file = paste(rDataDirPath, 'phaseIoutput_', rawData[1,4],'.RData', sep = ''))
 
 
 ```
 
-    - #### Phase II:
+   - #### Phase II:
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
+
 Syntax highlighted code block
 
 # Header 1
